@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Mind Clinic | Healing Minds, Restoring Lives</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo"><i class="fas fa-brain"></i> Serenity Mind Clinic</a>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#doctors">Our Doctors</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#appointment" class="btn nav-btn">Book Appointment</a></li>
+                    <li><a href="login.html">Doctor Login</a></li> </ul>
+                </ul>
+                <div class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Healing Minds, Restoring Lives</h1>
+            <p>At Serenity Mind Clinic, we provide compassionate mental health care with a team of experienced professionals dedicated to your wellbeing.</p>
+            <div class="hero-buttons">
+                <a href="#appointment" class="btn">Book Appointment</a>
+                <a href="#doctors" class="btn btn-blue">Meet Our Doctors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Us</h2>
+                <p>Learn more about our approach to mental health</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>Serenity Mind Clinic is dedicated to providing high-quality, compassionate mental health care to individuals and families. Our mission is to help our patients achieve optimal mental wellness through personalized treatment plans and evidence-based therapies.</p>
+                    
+                    <h3>Our Approach</h3>
+                    <p>We believe in a holistic approach to mental health that addresses the biological, psychological, and social factors that influence wellbeing. Our team of experienced professionals works collaboratively to create individualized treatment plans that meet the unique needs of each patient.</p>
+                    
+                    <a href="#contact" class="btn">Get in Touch</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Our Clinic">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+<section id="doctors">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Doctors</h2>
+        <p>Meet our team of highly qualified professionals</p>
+      </div>
+      <div class="doctors-grid">
+  
+        <div class="doctor-card"
+  onclick="showDoctorModal(
+    'Dr. Anjali Rao',
+    'Clinical Psychologist',
+    'Dr. Anjali Rao is a highly respected Clinical Psychologist with over a decade of dedicated experience in the field of mental health. Holding a Ph.D. in Clinical Psychology from the prestigious University of Delhi. She specializes in Cognitive Behavioral Therapy (CBT), trauma-focused therapy, and anxiety management. Her therapeutic approach combines evidence-based techniques with deep empathy, helping clients navigate complex emotional and psychological challenges. ',
+    'University of Delhi',
+    [
+    './assets/images/Doctor1.jpg', // Example path
+        './assets/images/dr-rao-therapy-room.jpg', // Example path
+        './assets/images/dr-rao-conference.jpg' // Example path
+    ])">
+  <img src="https://via.placeholder.com/400x400?text=Dr.+Anjali+Rao" alt="Dr. Anjali Rao" class="doctor-img">
+  <div class="doctor-info">
+    <h3>Dr. Anjali Rao</h3>
+    <p>Clinical Psychologist</p>
+    <a href="#appointment" class="btn">Book Appointment</a>
+  </div>
+</div>
+
+  
+        <!-- Doctor 2 -->
+        <div class="doctor-card"
+          onclick="showDoctorModal('Dr. Priti Rao', 'Psychiatrist', 
+          'MBBS, MD Psychiatry. Specializes in adult mental health, medication management, and mood disorders.', 
+          'AIIMS New Delhi')">
+          <img src="https://via.placeholder.com/400x400?text=Dr.+Priti+Rao" alt="Dr. Priti Rao" class="doctor-img">
+          <div class="doctor-info">
+            <h3>Dr. Priti Rao</h3>
+            <p>Psychiatrist</p>
+            <a href="#appointment" class="btn">Book Appointment</a>
+          </div>
+        </div>
+  
+        <!-- Doctor 3 -->
+        <div class="doctor-card"
+          onclick="showDoctorModal('Dr. Sourav Banerjee', 'Child & Adolescent Specialist', 
+          'Over 12 years helping children and teens with behavioral, developmental, and emotional disorders.', 
+          'NIMHANS, Bangalore')">
+          <img src="https://via.placeholder.com/400x400?text=Dr.+Sourav+Banerjee" alt="Dr. Sourav Banerjee" class="doctor-img">
+          <div class="doctor-info">
+            <h3>Dr. Sourav Banerjee</h3>
+            <p>Child & Adolescent Specialist</p>
+            <a href="#appointment" class="btn">Book Appointment</a>
+          </div>
+        </div>
+  
+        <!-- Doctor 4 -->
+        <div class="doctor-card"
+          onclick="showDoctorModal('Dr. Niladry Roy', 'Neuropsychologist', 
+          'Expert in brain-behavior relationships, cognitive testing, and neuro-rehabilitation.', 
+          'University of Calcutta')">
+          <img src="https://via.placeholder.com/400x400?text=Dr.+Niladry+Roy" alt="Dr. Niladry Roy" class="doctor-img">
+          <div class="doctor-info">
+            <h3>Dr. Niladry Roy</h3>
+            <p>Neuropsychologist</p>
+            <a href="#appointment" class="btn">Book Appointment</a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive mental health care services</p>
+            </div>
+            <div class="services-list">
+                <!-- Service 1 -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Individual Therapy</h3>
+                        <p>Personalized one-on-one therapy sessions tailored to address your specific needs and concerns.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Psychiatric Consultation</h3>
+                        <p>Expert evaluation and medication management by our experienced psychiatrists.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Family & Marriage Counseling</h3>
+                        <p>Strengthen relationships and improve communication with our specialized family therapy programs.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Teleconsultation</h3>
+                        <p>Convenient online therapy sessions from the comfort of your home.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Child & Adolescent Therapy</h3>
+                        <p>Specialized treatment approaches for younger patients dealing with emotional and behavioral challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Patients Say</h2>
+                <p>Read about experiences from those we've helped</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-wrapper" id="testimonial-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>The care I received at Serenity Mind Clinic has been life-changing. Dr. Rao helped me develop coping strategies for my anxiety that I use every day. I can't thank the team enough for their support and guidance.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="/api/placeholder/100/100" alt="Patient">
+                            <div class="author-info">
+                                <h4>Rebecca M.</h4>
+                                <p>Patient</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>Our family therapy sessions with Dr. Wilson have improved our communication tremendously. We now have the tools to work through difficult situations together. The clinic's warm environment made us feel comfortable from day one.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="/api/placeholder/100/100" alt="Patient">
+                            <div class="author-info">
+                                <h4>The Martinez Family</h4>
+                                <p>Family Therapy Patients</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <p>Dr. Johnson's expertise in adolescent mental health has been instrumental in helping my teenager navigate a difficult time. The teleconsultation option has been incredibly convenient for our busy schedule.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="/api/placeholder/100/100" alt="Patient">
+                            <div class="author-info">
+                                <h4>Thomas K.</h4>
+                                <p>Parent of Patient</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <div class="control-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="control-btn next-btn" id="next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Appointment Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Reach out to schedule your appointment</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <!-- Address -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Our Location</h3>
+                            <p>123 Healing Street, Wellness District<br>Kolkata, WB 000000</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>(123) 000-000</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@serenitymindclinic.com</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Hours -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Working Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 7:00 PM<br>
+                            Saturday: 9:00 AM - 3:00 PM<br>
+                            Sunday: Closed</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Map -->
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.346113411416!2d85.17574967590089!3d25.59341271553767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed59000915f8e7%3A0x83f9bf17589cd78a!2sMIND%20HOSPITAL!5e0!3m2!1sen!2sus!4v1746792169431!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form" id="appointment">
+                    <h3>Book an Appointment</h3>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="doctor">Preferred Doctor (Optional)</label>
+                            <select id="doctor" name="doctor" class="form-control">
+                                <option value="">-- Select Doctor --</option>
+                                <option value="3PAakzXIapShyP6V9HUji6blwrG3">Dr. Anjali Rao - Clinical Psychologist</option>
+                                <option value="Dr. Priti Rao">Dr. Priti Rao - Psychiatrist</option>
+                                <option value="Dr. Sourav Banerjee">Dr. Sourav Banerjee - Child & Adolescent Specialist</option>
+                                <option value="Dr. Niladry Roy">Dr. Niladry Roy - Neuropsychologist</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Tell us about your concerns or any questions you may have..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3><i class="fas fa-brain"></i> Serenity Mind Clinic</h3>
+                    <p>Providing compassionate mental health care for individuals and families.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#doctors">Our Doctors</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">Individual Therapy</a></li>
+                        <li><a href="#services">Psychiatric Consultation</a></li>
+                        <li><a href="#services">Family & Marriage Counseling</a></li>
+                        <li><a href="#services">Teleconsultation</a></li>
+                        <li><a href="#services">Child & Adolescent Therapy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Serenity Mind Clinic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <script src="./script.js"></script>
+
+    <div id="doctor-modal" class="modal">
+        <div class="modal-content large-modal">
+          <span class="close-btn" onclick="closeDoctorModal()">×</span>
+          
+          <div class="modal-header">
+            <div>
+              <h2 id="modal-doctor-name"></h2>
+              <p id="modal-doctor-specialty" style="font-weight: bold; margin-bottom: 10px;"></p>
+              <p id="modal-doctor-bio" style="margin-bottom: 5px;"></p>
+              <p id="modal-doctor-edu" style="color: #2c8d65;"></p>
+            </div>
+          </div>
+      
+          <div id="modal-gallery" class="gallery large-gallery"></div>
+        </div>
+      </div>
+      
+      
+      
+    
+</body>
+</html>

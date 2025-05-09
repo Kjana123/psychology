@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Admin Panel | Serenity Mind Clinic</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css" rel="stylesheet">
+
+  <link href="./css/styles.css" rel="stylesheet">
+  <style>
+    /* Basic styles to manage login vs admin view */
+    #admin-panel-content {
+        display: none; /* Initially hide admin content */
+    }
+    #login-container {
+        display: flex; /* Initially show login form */
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f8f9fa;
+        padding: 20px; /* Add some padding */
+        box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+    .login-form-wrapper {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        width: 100%; /* Use 100% width up to max-width */
+        box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+    .login-header {
+        margin-bottom: 30px;
+    }
+    .login-header i {
+        font-size: 3rem;
+        color: #3498db;
+        margin-bottom: 10px;
+    }
+    .login-header h2 {
+        margin-bottom: 5px;
+        color: #2c3e50;
+    }
+    .error-message {
+        color: #e74c3c;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+     .dashboard-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+     }
+    .stat-card {
+        background-color: #e6f0fd;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .stat-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #3498db;
+    }
+    .stat-label {
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    /* Calendar Specific Styles (adjust as needed) */
+    .calendar-container {
+        margin-top: 40px;
+    }
+    .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        gap: 10px; /* Add some space when wrapping */
+    }
+    .calendar-header h2 {
+        margin: 0;
+    }
+
+    /* Modal Styles (make sure these are present in your styles.css or here) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1001; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto; /* 10% from the top and centered */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      max-width: 600px; /* Adjust as needed */
+      width: 90%;
+      position: relative;
+    }
+
+    .close-btn {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+      color: #777;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .appointment-details h3 {
+        margin-bottom: 10px;
+    }
+
+    .detail-item {
+        margin-bottom: 15px;
+    }
+    .detail-item strong {
+        display: inline-block;
+        min-width: 80px; /* Adjust spacing */
+    }
+     .modal-actions {
+         margin-top: 20px;
+         text-align: right;
+     }
+    .modal-actions .btn {
+        margin-left: 10px;
+    }
+    .btn-danger {
+        background-color: #e74c3c;
+    }
+    .btn-danger:hover {
+         background-color: #c0392b;
+    }
+    .form-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+    .form-row .form-group {
+        flex: 1;
+        min-width: 200px; /* Ensure inputs are not too small when wrapped */
+    }
+     .form-group label {
+         display: block; /* Ensure labels are on their own line in modals */
+         margin-bottom: 5px;
+         font-weight: bold;
+     }
+     .form-control {
+         width: 100%;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         box-sizing: border-box; /* Include padding in width */
+     }
+  </style>
+</head>
+<body>
+
+  <div id="login-container">
+    <div class="login-form-wrapper">
+      <div class="login-header">
+        <i class="fas fa-brain"></i>
+        <h2>Serenity Mind Clinic</h2>
+        <p>Doctor Portal Login</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" required>
+        </div>
+
+        <p id="login-error" class="error-message"></p>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="admin-panel-content">
+      <header>
+        <div class="container">
+          <div class="admin-header">
+            <div class="logo">
+              <i class="fas fa-brain"></i> Serenity Mind Clinic
+            </div>
+            <div class="doctor-info">
+              <img id="doctor-photo" src="path/to/default/doctor-image.jpg" alt="Doctor">
+              <div>
+                <h2 id="doctor-name">Loading...</h2>
+                <p id="doctor-specialty"></p>
+              </div>
+            </div>
+            <button id="logout-btn" class="btn">Logout</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="container">
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <h3>This Week</h3>
+            <div class="stat-number" id="total-appointments">0</div>
+            <div class="stat-label">Total Appointments</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="confirmed-appointments">0</div>
+            <div class="stat-label">Confirmed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="pending-appointments">0</div>
+            <div class="stat-label">Pending</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="completed-appointments">0</div>
+            <div class="stat-label">Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="cancelled-appointments">0</div>
+            <div class="stat-label">Cancelled</div>
+          </div>
+        </div>
+
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <h2>Your Appointments</h2>
+            <div class="calendar-actions">
+              <button id="add-appointment-btn" class="btn">+ New Appointment</button>
+            </div>
+          </div>
+          <div id="calendar"></div>
+        </div>
+      </main>
+  </div>
+
+
+  <div id="appointment-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <h2>Appointment Details</h2>
+
+      <div class="appointment-details">
+        <h3 id="modal-patient-name"></h3>
+        <p id="modal-appointment-time"></p>
+
+        <div class="detail-item">
+          <strong>Email:</strong>
+          <span id="modal-patient-email"></span>
+        </div>
+
+        <div class="detail-item">
+          <strong>Phone:</strong>
+          <span id="modal-patient-phone"></span>
+        </div>
+
+        <div class="detail-item">
+          <strong>Notes:</strong>
+          <p id="modal-patient-message"></p>
+        </div>
+
+        <div class="detail-item">
+          <strong>Status:</strong>
+          <select id="modal-status-select" class="form-control">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button id="update-status-btn" class="btn">Update Status</button>
+          <button id="delete-appointment-btn" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="new-appointment-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeNewAppointmentModal()">×</span>
+      <h2>Create New Appointment</h2>
+
+      <form id="new-appointment-form">
+        <div class="form-group">
+          <label for="new-patient-name">Patient Name *</label>
+          <input type="text" id="new-patient-name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="new-patient-email">Email *</label>
+          <input type="email" id="new-patient-email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="new-patient-phone">Phone *</label>
+          <input type="tel" id="new-patient-phone" class="form-control" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="new-appointment-date">Date *</label>
+            <input type="date" id="new-appointment-date" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="new-appointment-time">Time *</label>
+            <input type="time" id="new-appointment-time" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="new-patient-message">Notes</label>
+          <textarea id="new-patient-message" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="create-appointment-btn" class="btn">Create Appointment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
+
+  <script>
+    // TODO: Replace with your actual Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDvJiabxBAOxibrdrl8E7Hw2sV8Ab4nCS0",
+      authDomain: "psychology-2b150.firebaseapp.com",
+      projectId: "psychology-2b150",
+      storageBucket: "psychology-2b150.firebasestorage.app",
+      messagingSenderId: "1025399301938",
+      appId: "1:1025399301938:web:b041717ed60e898153992b"
+    };
+
+    // Initialize Firebase (if not already initialized in main site)
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+     // Get Firebase instances here if needed for admin.html script logic
+     const auth = firebase.auth();
+     const db = firebase.firestore();
+
+
+    // Check login state and show/hide appropriate UI
+    auth.onAuthStateChanged(function(user) {
+      const loginContainer = document.getElementById('login-container');
+      const adminPanelContent = document.getElementById('admin-panel-content'); // Make sure your main admin content div has this ID
+
+      if (user) {
+        // User is logged in, show admin panel content
+        if(loginContainer) loginContainer.style.display = 'none';
+        if(adminPanelContent) adminPanelContent.style.display = 'block';
+        // You might need to show header/main elements if you hide them initially for the login view
+        // document.querySelector('header').style.display = 'block';
+        // document.querySelector('main').style.display = 'block';
+
+
+        // *** IMPORTANT: Call the functions from admin.js here AFTER login is confirmed ***
+        // Ensure these functions (loadDoctorInfo, initializeCalendar, loadWeeklyStats)
+        // are defined in admin.js and are accessible (e.g., attached to the window object).
+        if (typeof loadDoctorInfo === 'function') loadDoctorInfo(user.uid);
+        if (typeof initializeCalendar === 'function') initializeCalendar(user.uid);
+        if (typeof loadWeeklyStats === 'function') loadWeeklyStats(user.uid);
+
+
+      } else {
+        // User is not logged in, show login form
+        if(loginContainer) loginContainer.style.display = 'flex';
+        if(adminPanelContent) adminPanelContent.style.display = 'none';
+         // You might need to hide header/main elements if showing them for the admin panel
+        // document.querySelector('header').style.display = 'none';
+        // document.querySelector('main').style.display = 'none';
+        // No redirect needed here - just control visibility on this page
+      }
+    });
+
+    // Logout functionality (keep this in admin.html or where appropriate)
+     const logoutBtn = document.getElementById('logout-btn');
+     if(logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            auth.signOut() // Use the auth instance
+            .then(() => {
+                // Sign-out successful. The onAuthStateChanged listener above will
+                // detect the signed-out state and show the login form.
+                console.log("User signed out successfully.");
+                // Optional: Redirect to homepage after logout if desired
+                // window.location.href = 'index.html';
+            })
+            .catch((error) => {
+                console.error("Error signing out:", error);
+                 // Optional: Show a notification if you have a notification system
+                 // if (typeof showNotification === 'function') showNotification('Error signing out.', 'error');
+            });
+        });
+     }
+
+
+    // Basic showNotification function (copy from script.js or ensure script.js is linked before this script block)
+    // If you have script.js linked AFTER admin.js, you might need the function definition here.
+     if (typeof showNotification !== 'function') {
+         window.showNotification = function(message, type) {
+              const notification = document.createElement('div');
+              notification.className = `notification ${type}`;
+              notification.textContent = message;
+
+              // ... style and show notification (copy from script.js) ...
+
+              document.body.appendChild(notification);
+              setTimeout(() => { /* ... hide and remove ... */ }, 5000);
+         };
+     }
+
+
+  </script>
+
+
+  <script src="./admin.js"></script>
+</body>
+</html>
